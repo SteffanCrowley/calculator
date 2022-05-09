@@ -9,33 +9,29 @@ function subtract(x, y) {
   return x - y;
 }
 
-function multiply(newArray) {
-  let z = 1;
-
-  for (let i = 0; i < newArray.length; i++) {
-    z = z * newArray[i];
-  }
-  return z;
+function multiply(x, y) {
+  return x * y;
 }
 
-function divide(newArray) {
-  return newArray[0] / newArray[1];
+function divide(x, y) {
+  return x / y;
 }
 
 function operate(operator, x, y) {
   switch (operator) {
-    case add:
+    case "add":
       return add(x, y);
-    case multiply:
+    case "multiply":
       return multiply(x, y);
-    case subtract:
+    case "subtract":
       return subtract(x, y);
-    case divide:
+    case "divide":
       return divide(x, y);
   }
 }
-
+let displayValue = "";
 let displayValue1 = "";
+let displayValue2 = "";
 let operator = "";
 
 // we use the .forEach method to iterate through each button
@@ -43,11 +39,18 @@ buttons.forEach((button) => {
   // and for each one we add a 'click' listener
   button.addEventListener("click", () => {
     if (Number.isInteger(parseInt(button.id))) {
-      displayValue1 += button.id;
+      displayValue += button.id;
+    } else if (button.id == "equal") {
+      console.log(displayValue1);
+      console.log(displayValue);
+      console.log(operator);
+      console.log(
+        operate(operator, parseInt(displayValue1), parseInt(displayValue))
+      );
     } else {
       operator = button.id;
-      console.log(displayValue1);
-      console.log(operator);
+      displayValue1 = displayValue;
+      displayValue = "";
     }
   });
 });
