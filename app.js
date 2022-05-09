@@ -1,5 +1,6 @@
 // buttons is a node list. It looks and acts much like an array.
 const buttons = document.querySelectorAll("button");
+const display = document.querySelector("#display");
 
 function add(x, y) {
   return x + y;
@@ -17,6 +18,7 @@ function divide(x, y) {
   return x / y;
 }
 
+//takes operator and 2 numbers, then sends the numbers to the proper function
 function operate(operator, x, y) {
   switch (operator) {
     case "add":
@@ -29,6 +31,7 @@ function operate(operator, x, y) {
       return divide(x, y);
   }
 }
+//initializes main variables
 let displayValue = "";
 let displayValue1 = "";
 let displayValue2 = "";
@@ -40,12 +43,15 @@ buttons.forEach((button) => {
   button.addEventListener("click", () => {
     if (Number.isInteger(parseInt(button.id))) {
       displayValue += button.id;
+      display.textContent = displayValue;
     } else if (button.id == "equal") {
       console.log(displayValue1);
       console.log(displayValue);
       console.log(operator);
-      console.log(
-        operate(operator, parseInt(displayValue1), parseInt(displayValue))
+      display.textContent = operate(
+        operator,
+        parseInt(displayValue1),
+        parseInt(displayValue)
       );
     } else if (button.id == "clear") {
       clear();
@@ -57,6 +63,7 @@ buttons.forEach((button) => {
   });
 });
 
+//clears out every variable and resets it
 function clear() {
   displayValue = "";
   displayValue1 = "";
