@@ -1,3 +1,6 @@
+// buttons is a node list. It looks and acts much like an array.
+const buttons = document.querySelectorAll("button");
+
 function add(x, y) {
   return x + y;
 }
@@ -32,4 +35,19 @@ function operate(operator, x, y) {
   }
 }
 
-console.log(operate(add, 5, 10));
+let displayValue1 = "";
+let operator = "";
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+  // and for each one we add a 'click' listener
+  button.addEventListener("click", () => {
+    if (Number.isInteger(parseInt(button.id))) {
+      displayValue1 += button.id;
+    } else {
+      operator = button.id;
+      console.log(displayValue1);
+      console.log(operator);
+    }
+  });
+});
