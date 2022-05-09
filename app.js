@@ -47,6 +47,8 @@ buttons.forEach((button) => {
       console.log(
         operate(operator, parseInt(displayValue1), parseInt(displayValue))
       );
+    } else if (button.id == "clear") {
+      clear();
     } else {
       operator = button.id;
       displayValue1 = displayValue;
@@ -54,3 +56,10 @@ buttons.forEach((button) => {
     }
   });
 });
+
+function clear() {
+  displayValue = "";
+  displayValue1 = "";
+  displayValue2 = "";
+  operator = "";
+}
