@@ -69,4 +69,5 @@ function clear() {
   displayValue1 = "";
   displayValue2 = "";
   operator = "";
+  display.textContent = "";
 }
