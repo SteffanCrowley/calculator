@@ -32,4 +32,4 @@ function operate(operator, x, y) {
   }
 }
 
-console.log(operate(add, 5, 6));
+console.log(operate(add, 5, 10));
