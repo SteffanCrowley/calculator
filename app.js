@@ -47,6 +47,16 @@ buttons.forEach((button) => {
     if (Number.isInteger(parseInt(button.id))) {
       displayValue += button.id;
       display.textContent = displayValue;
+    }
+    //if there is no existing decimal, add it,
+    //if decimal does exist, do nothing and console log error
+    else if (button.id == ".") {
+      if (displayValue.includes(".")) {
+        console.log("ERROR");
+      } else {
+        displayValue += button.id;
+        display.textContent = displayValue;
+      }
     } else if (button.id == "equal") {
       console.log(displayValue1);
       console.log(displayValue);
@@ -59,6 +69,8 @@ buttons.forEach((button) => {
     } else if (button.id == "clear") {
       clear();
     } else {
+      //the below is an exception for when you click operator
+      //a second time for chaining operations.
       if (operator != "") {
         display.textContent = operate(
           operator,
@@ -68,7 +80,9 @@ buttons.forEach((button) => {
         operator = button.id;
         displayValue1 = display.textContent;
         displayValue = "";
-      } else {
+      }
+      //this is for first time operator clicks
+      else {
         operator = button.id;
         displayValue1 = displayValue;
         displayValue = "";
