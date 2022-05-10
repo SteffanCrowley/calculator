@@ -45,8 +45,12 @@ buttons.forEach((button) => {
   // and for each one we add a 'click' listener
   button.addEventListener("click", () => {
     if (Number.isInteger(parseInt(button.id))) {
-      displayValue += button.id;
-      display.textContent = displayValue;
+      if (displayValue.length < 9) {
+        displayValue += button.id;
+        display.textContent = displayValue;
+      } else {
+        console.log("too long");
+      }
     }
     //if there is no existing decimal, add it,
     //if decimal does exist, do nothing and console log error
@@ -63,8 +67,8 @@ buttons.forEach((button) => {
       console.log(operator);
       display.textContent = operate(
         operator,
-        parseInt(displayValue1),
-        parseInt(displayValue)
+        parseFloat(displayValue1),
+        parseFloat(displayValue)
       );
     } else if (button.id == "clear") {
       clear();
@@ -74,8 +78,8 @@ buttons.forEach((button) => {
       if (operator != "") {
         display.textContent = operate(
           operator,
-          parseInt(displayValue1),
-          parseInt(displayValue)
+          parseFloat(displayValue1),
+          parseFloat(displayValue)
         );
         operator = button.id;
         displayValue1 = display.textContent;
