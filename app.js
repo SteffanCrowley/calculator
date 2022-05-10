@@ -1,6 +1,6 @@
 // buttons is a node list. It looks and acts much like an array.
 const buttons = document.querySelectorAll("button");
-const display = document.querySelector("#display");
+const display = document.querySelector("#disp");
 
 function add(x, y) {
   return x + y;
@@ -56,9 +56,20 @@ buttons.forEach((button) => {
     } else if (button.id == "clear") {
       clear();
     } else {
-      operator = button.id;
-      displayValue1 = displayValue;
-      displayValue = "";
+      if (operator != "") {
+        display.textContent = operate(
+          operator,
+          parseInt(displayValue1),
+          parseInt(displayValue)
+        );
+        operator = button.id;
+        displayValue1 = display.textContent;
+        displayValue = "";
+      } else {
+        operator = button.id;
+        displayValue1 = displayValue;
+        displayValue = "";
+      }
     }
   });
 });
